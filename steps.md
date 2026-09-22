@@ -9,6 +9,15 @@
 
 Our goal is to build a rock-solid, production-grade, highly engaging full-stack application that is **hackproof**, **low-latency**, and **resilient to modern web vulnerabilities**. 
 
+### Visual Fidelity Reference Match
+The user provided the exact target UI visual reference (`UI screenshot`). The implementation will reproduce this 100% faithfully:
+- **Header & Hero Grid:** Top terminal bar with `run --live-demo`, radar scanner icon, system status telemetry card.
+- **Side-by-Side Comparison Panels:** Red chaos panel with ASCII brain + `ERR: 503` alerts vs. Green rate-limited panel with ASCII shield + `[OK] 200` log lines.
+- **Control Bar:** Seamless segmented controls for Rate Limiting toggle (`[ ON ]`), Algorithm (`Fixed Window` / `Sliding Window`), Slider with 10/50/100/500/1000 ticks & value readout, and `⚡ send-burst --requests=20` button.
+- **Four Stat Cards with Bar Sparklines:** `total_requests`, `blocked_requests` (red), `successful_requests` (green), and `avg_response_time`.
+- **Live Logs Table & Stacked Activity Bar Chart:** Recent requests log with pulsing `LIVE` indicator and 5-minute stacked bar chart (red blocked + green allowed).
+- **Footer:** Technology stack logos/badges and blinking cursor manifesto.
+
 To maintain transparency, high code quality, and maintainability, development follows structured phases. Every step is logged below with technical rationale, security checks, and verification results.
 
 ---
