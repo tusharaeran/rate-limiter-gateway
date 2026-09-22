@@ -62,18 +62,25 @@ graph TD
   - `dotenv`: Secure environment variable management.
 - **Development Tooling:** `nodemon` for hot reload.
 
-### 2.2 Frontend Architecture
+### 2.2 Frontend Architecture & Toolchain
 - **Framework:** React 19 / 18
-- **Build Tool:** Vite 6 / 5
-  - *Why Vite?* Instant HMR, minimal bundle footprint, native ES modules.
-- **Styling:** Vanilla CSS with custom CSS variables (Design Tokens), zero heavy CSS framework overhead, fine-grained control over terminal CRT and glow aesthetics.
+- **Build Tool:** Vite
+- **Styling & Design System:**
+  - Tailwind CSS + CSS Variables (Design Tokens) for rapid, structured styling.
+  - **Motion (`motion` / `framer-motion`):** Smooth, high-performance micro-interactions (radar sweep, pulsing live badges, animated sparklines, button feedback).
+  - **UI/UX Anti-Slop Guidelines:** Zero generic placeholders, pixel-perfect contrast, strict hierarchy, retro-terminal hacker aesthetic.
 - **Data Visualization & Charts:**
-  - Chart.js + `react-chartjs-2` or lightweight custom SVG / Recharts for the 15-second stacked traffic bucket chart.
-  - Custom zero-dependency SVG sparklines inside stat cards for maximal performance.
-- **Icons:** `lucide-react` (terminal, shield, alert, activity, cpu, server icons).
-- **Fonts:** Google Fonts CDN:
+  - Stacked bar chart for 5-minute 15-second traffic buckets (allowed vs. blocked).
+  - Real-time SVG sparklines for stat cards.
+- **Icons:** `lucide-react` (terminal, shield, alert, activity, cpu, server, zap icons).
+- **Fonts:** Google Fonts:
   - Space Grotesk (`https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap`)
   - JetBrains Mono (`https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap`)
+
+### 2.3 Persistence & Extensibility Architecture
+- **Real-Time Layer:** Redis (Primary rate limiting engine, counters, sorted sets, active log buffers).
+- **Persistent Data & Extensibility:** PostgreSQL schema readiness for storing users, API keys, persistent configurations, and long-term historical logs.
+- **Quality Assurance & Verification:** Automated browser verification and endpoint testing.
 
 ---
 
