@@ -32,23 +32,42 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
       gap: '1.25rem',
       marginBottom: '1.5rem'
     }}>
-      {/* 1. Left Panel: recent_requests.log */}
-      <div className="card-terminal" style={{ minHeight: '320px', display: 'flex', flexDirection: 'column' }}>
+      {/* 1. Left Panel: Recent Request Logs */}
+      <div className="card-terminal" style={{ minHeight: '340px', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           marginBottom: '0.85rem',
-          paddingBottom: '0.5rem',
-          borderBottom: '1px solid rgba(0, 255, 102, 0.15)'
+          paddingBottom: '0.75rem',
+          borderBottom: '1px solid var(--glass-border-subtle)'
         }}>
-          <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--green-bright)' }}>
-            &gt; recent_requests.log
+          <div>
+            <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--text-white)' }}>
+              Recent Request Stream
+            </div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
+              Real-time HTTP traffic through Redis rate limiter
+            </div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', color: 'var(--green-bright)' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.45rem',
+            fontSize: '0.72rem',
+            color: 'var(--emerald-bright)',
+            padding: '3px 12px',
+            borderRadius: '9999px',
+            background: 'var(--emerald-glass)',
+            border: '1px solid var(--emerald-glass-border)',
+            fontWeight: 800,
+            backdropFilter: 'blur(12px)',
+            boxShadow: 'var(--glass-specular), 0 0 14px var(--emerald-glow)',
+            animation: 'living-droplet-pulse 3s ease-in-out infinite'
+          }}>
             <span className="live-pulse" />
-            <span>LIVE</span>
+            <span>LIVING STREAM</span>
           </div>
         </div>
 
@@ -57,16 +76,16 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
           <table style={{
             width: '100%',
             borderCollapse: 'collapse',
-            fontSize: '0.78rem',
+            fontSize: '0.76rem',
             textAlign: 'left'
           }}>
             <thead>
-              <tr style={{ color: 'var(--text-secondary)', borderBottom: '1px solid rgba(0, 255, 102, 0.1)' }}>
-                <th style={{ padding: '0.45rem 0.5rem', fontWeight: 500 }}>TIME</th>
-                <th style={{ padding: '0.45rem 0.5rem', fontWeight: 500 }}>METHOD</th>
-                <th style={{ padding: '0.45rem 0.5rem', fontWeight: 500 }}>ENDPOINT</th>
-                <th style={{ padding: '0.45rem 0.5rem', fontWeight: 500 }}>STATUS</th>
-                <th style={{ padding: '0.45rem 0.5rem', fontWeight: 500 }}>IP ADDRESS</th>
+              <tr style={{ color: 'var(--text-muted)', borderBottom: '1px solid var(--glass-border-subtle)' }}>
+                <th style={{ padding: '0.6rem 0.75rem', fontWeight: 700 }}>TIMESTAMP</th>
+                <th style={{ padding: '0.6rem 0.75rem', fontWeight: 700 }}>METHOD</th>
+                <th style={{ padding: '0.6rem 0.75rem', fontWeight: 700 }}>ENDPOINT</th>
+                <th style={{ padding: '0.6rem 0.75rem', fontWeight: 700 }}>STATUS</th>
+                <th style={{ padding: '0.6rem 0.75rem', fontWeight: 700 }}>CLIENT IP</th>
               </tr>
             </thead>
             <tbody>
@@ -79,31 +98,54 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
                     <tr
                       key={log.id || idx}
                       style={{
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.03)',
-                        transition: 'background 0.1s ease'
+                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                        transition: 'all 0.25s var(--spring-bounce)',
+                        cursor: 'default'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'transparent';
                       }}
                     >
-                      <td style={{ padding: '0.4rem 0.5rem', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '0.5rem 0.65rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
                         {log.time}
                       </td>
-                      <td style={{
-                        padding: '0.4rem 0.5rem',
-                        fontWeight: 600,
-                        color: isPost ? 'var(--red-primary)' : 'var(--green-bright)'
-                      }}>
-                        {log.method}
+                      <td style={{ padding: '0.5rem 0.65rem' }}>
+                        <span style={{
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          fontSize: '0.68rem',
+                          fontWeight: 700,
+                          fontFamily: 'var(--font-mono)',
+                          background: isPost ? 'rgba(99, 102, 241, 0.18)' : 'rgba(56, 189, 248, 0.18)',
+                          border: `1px solid ${isPost ? 'rgba(99, 102, 241, 0.35)' : 'rgba(56, 189, 248, 0.35)'}`,
+                          color: isPost ? '#c7d2fe' : '#bae6fd',
+                          boxShadow: 'var(--glass-specular)'
+                        }}>
+                          {log.method}
+                        </span>
                       </td>
-                      <td style={{ padding: '0.4rem 0.5rem', color: 'var(--text-white)' }}>
+                      <td style={{ padding: '0.5rem 0.65rem', color: 'var(--text-white)', fontFamily: 'var(--font-mono)' }}>
                         {log.endpoint}
                       </td>
-                      <td style={{
-                        padding: '0.4rem 0.5rem',
-                        fontWeight: 700,
-                        color: isBlocked ? 'var(--red-primary)' : 'var(--green-bright)'
-                      }}>
-                        {log.status}
+                      <td style={{ padding: '0.5rem 0.65rem' }}>
+                        <span style={{
+                          padding: '3px 10px',
+                          borderRadius: '9999px',
+                          fontSize: '0.7rem',
+                          fontWeight: 800,
+                          fontFamily: 'var(--font-mono)',
+                          background: isBlocked ? 'var(--rose-glass)' : 'var(--emerald-glass)',
+                          border: `1px solid ${isBlocked ? 'var(--rose-glass-border)' : 'var(--emerald-glass-border)'}`,
+                          color: isBlocked ? 'var(--rose-bright)' : 'var(--emerald-bright)',
+                          boxShadow: 'var(--glass-specular)'
+                        }}>
+                          {isBlocked ? '429 Blocked' : '200 OK'}
+                        </span>
                       </td>
-                      <td style={{ padding: '0.4rem 0.5rem', color: 'var(--text-secondary)' }}>
+                      <td style={{ padding: '0.5rem 0.65rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                         {log.ip}
                       </td>
                     </tr>
@@ -111,8 +153,8 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
                 })
               ) : (
                 <tr>
-                  <td colSpan={5} style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-muted)' }}>
-                    No recent traffic recorded yet. Fire a burst or send requests to see live logs.
+                  <td colSpan={5} style={{ padding: '2.5rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+                    No recent traffic recorded. Click "Send 20-Request Burst" to observe live throughput.
                   </td>
                 </tr>
               )}
@@ -121,29 +163,34 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
         </div>
       </div>
 
-      {/* 2. Right Panel: request_activity (last 5 minutes) */}
-      <div className="card-terminal" style={{ minHeight: '320px', display: 'flex', flexDirection: 'column' }}>
+      {/* 2. Right Panel: Request Activity Histogram */}
+      <div className="card-terminal" style={{ minHeight: '340px', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           marginBottom: '0.85rem',
-          paddingBottom: '0.5rem',
-          borderBottom: '1px solid rgba(0, 255, 102, 0.15)'
+          paddingBottom: '0.75rem',
+          borderBottom: '1px solid var(--glass-border-subtle)'
         }}>
-          <div style={{ fontSize: '0.84rem', fontWeight: 600, color: 'var(--green-bright)' }}>
-            &gt; request_activity (last 5 minutes)
+          <div>
+            <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--text-white)' }}>
+              Throughput & Throttling Histogram
+            </div>
+            <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
+              15-second stacked distribution (Past 5 minutes)
+            </div>
           </div>
           {/* Legend */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', fontSize: '0.72rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              <span style={{ display: 'inline-block', width: '8px', height: '8px', background: 'var(--green-bright)' }} />
-              <span style={{ color: 'var(--green-bright)' }}>= allowed</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', fontSize: '0.74rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '3px', background: 'var(--emerald-bright)', boxShadow: '0 0 6px var(--emerald-glow)' }} />
+              <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Allowed (200)</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              <span style={{ display: 'inline-block', width: '8px', height: '8px', background: 'var(--red-primary)' }} />
-              <span style={{ color: 'var(--red-primary)' }}>= blocked</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '3px', background: 'var(--rose-primary)', boxShadow: '0 0 6px var(--rose-glow)' }} />
+              <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Throttled (429)</span>
             </div>
           </div>
         </div>
@@ -161,7 +208,8 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
               fontSize: '0.68rem',
               color: 'var(--text-muted)',
               textAlign: 'right',
-              paddingRight: '6px'
+              paddingRight: '6px',
+              fontFamily: 'var(--font-mono)'
             }}>
               {yTicks.map(tick => (
                 <span key={tick}>{tick}</span>
@@ -172,8 +220,8 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
             <div style={{
               flex: 1,
               position: 'relative',
-              borderLeft: '1px solid rgba(0, 255, 102, 0.2)',
-              borderBottom: '1px solid rgba(0, 255, 102, 0.2)',
+              borderLeft: '1px solid var(--glass-border-subtle)',
+              borderBottom: '1px solid var(--glass-border-subtle)',
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'space-between',
@@ -188,7 +236,7 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
                     left: 0,
                     right: 0,
                     top: `${(i / (yTicks.length - 1)) * 100}%`,
-                    borderTop: '1px dashed rgba(0, 255, 102, 0.08)',
+                    borderTop: '1px dashed rgba(255, 255, 255, 0.06)',
                     pointerEvents: 'none'
                   }}
                 />
@@ -216,26 +264,33 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
                       justifyContent: 'flex-end',
                       height: '100%',
                       zIndex: 2,
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s var(--spring-bounce)'
                     }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scaleY(1.05)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scaleY(1)'}
                   >
-                    {/* Allowed Segment (Top / Green) */}
+                    {/* Allowed Segment (Top / Emerald) */}
                     {allowedHeightPct > 0 && (
                       <div style={{
                         height: `${allowedHeightPct}%`,
-                        background: 'var(--green-bright)',
-                        boxShadow: '0 0 4px rgba(0, 255, 102, 0.4)',
-                        borderTopLeftRadius: '2px',
-                        borderTopRightRadius: '2px'
+                        background: 'linear-gradient(180deg, #34d399 0%, #10b981 100%)',
+                        borderTopLeftRadius: '3px',
+                        borderTopRightRadius: '3px',
+                        boxShadow: '0 0 8px rgba(52, 211, 153, 0.35)',
+                        opacity: 0.95
                       }} />
                     )}
 
-                    {/* Blocked Segment (Bottom / Red) */}
+                    {/* Blocked Segment (Bottom / Rose) */}
                     {blockedHeightPct > 0 && (
                       <div style={{
                         height: `${blockedHeightPct}%`,
-                        background: 'var(--red-primary)',
-                        boxShadow: '0 0 4px rgba(255, 51, 102, 0.4)'
+                        background: 'linear-gradient(180deg, #fb7185 0%, #f43f5e 100%)',
+                        borderBottomLeftRadius: '3px',
+                        borderBottomRightRadius: '3px',
+                        boxShadow: '0 0 8px rgba(251, 113, 133, 0.35)',
+                        opacity: 0.95
                       }} />
                     )}
                   </div>
@@ -252,7 +307,8 @@ export default function DashboardPanels({ logs = [], activityBuckets = [] }) {
             paddingRight: '6px',
             paddingTop: '6px',
             fontSize: '0.68rem',
-            color: 'var(--text-muted)'
+            color: 'var(--text-muted)',
+            fontFamily: 'var(--font-mono)'
           }}>
             {xLabels.map((xl, i) => (
               <span key={i}>{xl.label}</span>

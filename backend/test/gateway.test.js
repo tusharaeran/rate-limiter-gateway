@@ -3,7 +3,7 @@
  * Verifies Fixed Window, Sliding Window, /api/send-burst, and telemetry routes.
  */
 
-const { app, server } = require('./server');
+const { app, server } = require('../src/server');
 const http = require('http');
 
 async function testRequest(path, method = 'GET', body = null) {

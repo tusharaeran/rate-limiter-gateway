@@ -7,7 +7,7 @@ const { redisClient } = require('../config/redisClient');
 const { fixedWindowRateLimiter } = require('./fixedWindow');
 const { slidingWindowRateLimiter } = require('./slidingWindow');
 
-const DEFAULT_LIMIT = parseInt(process.env.DEFAULT_LIMIT || '100', 10);
+const DEFAULT_LIMIT = parseInt(process.env.DEFAULT_LIMIT || '10', 10);
 const DEFAULT_ALGORITHM = process.env.DEFAULT_ALGORITHM || 'fixed-window';
 const WINDOW_SECONDS = parseInt(process.env.WINDOW_SIZE_SECONDS || '60', 10);
 

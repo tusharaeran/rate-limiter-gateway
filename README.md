@@ -1,7 +1,7 @@
 # ⚡ Pressure Meter (API Rate Limiter Gateway)
 
 > **SAME API. A HEALTHIER INTERNET.**  
-> *A full-stack, terminal/hacker-themed demonstration web application contrasting uncontrolled API traffic chaos with resilient, rate-limited infrastructure.*
+> *A full-stack API Rate Limiter Gateway with an Aquamorphic Living Flow frosted-glass dashboard, contrasting uncontrolled traffic chaos with resilient, rate-limited infrastructure.*
 
 ---
 
@@ -89,7 +89,7 @@ To ensure production-grade security, the application incorporates defensive hard
 - **Frontend:** React, Vite, Vanilla CSS Design System with CSS variables
 - **Typography:** `Space Grotesk` (Headings) & `JetBrains Mono` (Tabular Data & Logs)
 - **Icons:** Custom SVGs and `lucide-react`
-- **Aesthetic:** Terminal Retro-Cyberpunk, CRT scanline overlay, glowing phosphor matrix accents
+- **Aesthetic:** ColorOS 17 Aquamorphic Living Flow Glassmorphism, radiant twilight aurora orbs, crystal frosted acrylic surfaces, tactile spring micro-interactions
 
 ---
 

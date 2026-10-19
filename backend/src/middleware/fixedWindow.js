@@ -6,7 +6,7 @@
 const { redisClient } = require('../config/redisClient');
 const { resolveClientIp } = require('../utils/requestLogger');
 
-async function fixedWindowRateLimiter(req, res, next, configuredLimit = 100, windowSeconds = 60) {
+async function fixedWindowRateLimiter(req, res, next, configuredLimit = 10, windowSeconds = 60) {
   const ip = resolveClientIp(req);
   const now = Date.now();
   const windowMs = windowSeconds * 1000;

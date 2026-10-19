@@ -85,7 +85,8 @@ router.post('/limit', async (req, res) => {
 
 // POST /api/send-burst - Fires 20 requests server-side against dummy routes to simulate a burst
 router.post('/send-burst', async (req, res) => {
-  const callerIp = resolveClientIp(req);
+  const sessionId = req.headers['x-session-id'] || req.body?.sessionId || resolveClientIp(req);
+  const callerIp = sessionId;
   const totalRequests = 20;
   const config = await getConfig();
   const endpoints = ['/api/data', '/api/login', '/api/upload', '/api/profile'];
@@ -94,17 +95,15 @@ router.post('/send-burst', async (req, res) => {
   const results = [];
   const burstStartTime = Date.now();
 
-  // Simulated client IP pool (mostly caller's IP, with realistic subnet variations)
+  // Simulated client IP pool (scoped to current session for clean isolation)
   const ipPool = [
     callerIp,
     callerIp,
     callerIp,
     callerIp,
-    '192.168.1.4',
-    '192.168.1.8',
-    '192.168.1.12',
-    '192.168.1.6',
-    '192.168.1.3'
+    `${callerIp}-sub1`,
+    `${callerIp}-sub2`,
+    `${callerIp}-sub3`
   ];
 
   // Execute 20 simulated requests through the rate limiter logic
