@@ -45,9 +45,9 @@ const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173,http:/
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow non-browser requests (Postman, curl, internal server requests)
+        // Allow non-browser requests (Postman, curl, internal server requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || NODE_ENV === 'development') {
+    if (allowedOrigins.includes('*') || allowedOrigins.indexOf(origin) !== -1 || NODE_ENV === 'development') {
       return callback(null, true);
     }
     return callback(new Error('Cross-Origin Request Blocked by CORS Security Policy.'));
