@@ -102,8 +102,8 @@ To ensure production-grade security, the application incorporates defensive hard
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/your-username/pressure-meter.git
-cd pressure-meter
+git clone https://github.com/tusharaeran/rate-limiter-gateway.git
+cd rate-limiter-gateway
 ```
 
 ### 2. Backend Setup
@@ -162,4 +162,4 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ---
 
 ## 📄 License
-MIT © Antigravity Engineering
+MIT © Tushar

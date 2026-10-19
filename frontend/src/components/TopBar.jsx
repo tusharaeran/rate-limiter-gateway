@@ -70,11 +70,11 @@ export default function TopBar({ onTriggerBurst, isBursting, onResetDemo }) {
               backdropFilter: 'blur(8px)',
               boxShadow: 'var(--glass-specular)'
             }}>
-              COLOROS FLUID
+              DISTRIBUTED GATEWAY
             </span>
           </div>
           <div style={{ fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
-            Cloudflare-Resilient Rate Limiting & Telemetry Gateway
+            High-Throughput Rate Limiting & Telemetry Gateway
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function TopBar({ onTriggerBurst, isBursting, onResetDemo }) {
       {/* Right: Glass Interactive Controls */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
         <a
-          href="https://github.com"
+          href="https://github.com/tusharaeran/rate-limiter-gateway"
           target="_blank"
           rel="noreferrer"
           className="btn-terminal"

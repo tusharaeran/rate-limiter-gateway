@@ -2,7 +2,7 @@
 ## Project Name: Pressure Meter (API Rate Limiter Gateway Demo)
 **Version:** 1.0.0  
 **Status:** Approved  
-**Author:** AI Pair Programmer & Lead Engineering  
+**Author:** Tushar  
 
 ---
 

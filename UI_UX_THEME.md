@@ -1,7 +1,7 @@
 # UI/UX Theme & Design System Document
 ## Project Name: Pressure Meter (Terminal / Cyberpunk Hacker Aesthetic)
 **Version:** 1.0.0  
-**Design Lead:** Antigravity AI UI/UX Studio  
+**Design & Architecture:** Tushar  
 
 ---
 

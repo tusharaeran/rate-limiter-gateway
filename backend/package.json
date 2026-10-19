@@ -17,7 +17,7 @@
     "cybersecurity",
     "api-gateway"
   ],
-  "author": "Antigravity Engineering",
+  "author": "Tushar <tusharaeran@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",

@@ -121,9 +121,18 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Right: Architectural Mission Statement */}
+      {/* Right: Author & Mission Statement */}
       <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-        High-throughput, low-latency API defense with ColorOS Fluid Glass.
+        Designed & Built by{' '}
+        <a
+          href="https://github.com/tusharaeran"
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'var(--emerald-bright)', textDecoration: 'none', fontWeight: 700 }}
+        >
+          Tushar
+        </a>
+        {' '}• High-Throughput Distributed API Defense
       </div>
     </footer>
   );
